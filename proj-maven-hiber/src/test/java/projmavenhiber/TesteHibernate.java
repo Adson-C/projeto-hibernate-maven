@@ -47,5 +47,21 @@ DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
 		
 		System.out.println(pessoa);
 	}
+	
+	@Test
+	public void testeUpdate() { 
+		
+DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
+		
+		
+	UsuarioPessoa	pessoa = daoGeneric.pesquisar(1L, UsuarioPessoa.class);
+	
+	pessoa.setIdade(99);
+	pessoa.setName("Nome atualizado");
+	
+	pessoa = daoGeneric.updateMerge(pessoa);
+		
+		System.out.println(pessoa);
+	}
 
 }
