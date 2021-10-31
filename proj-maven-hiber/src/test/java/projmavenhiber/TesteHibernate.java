@@ -1,5 +1,7 @@
 package projmavenhiber;
 
+import java.util.List;
+
 import org.junit.Test;
 
 import dao.DaoGeneric;
@@ -13,12 +15,12 @@ public class TesteHibernate {
 		
 		UsuarioPessoa pessoa = new UsuarioPessoa();
 		
-		pessoa.setIdade(33);
-		pessoa.setLogin("teste2");
-		pessoa.setName("Gise");
-		pessoa.setSobreNome("Pimentel");
+		pessoa.setIdade(21);
+		pessoa.setLogin("Nei");
+		pessoa.setName("Nelly");
+		pessoa.setSobreNome("SAnto");
 		pessoa.setSenha("123");
-		pessoa.setEmail("gils@yahoo.com.br");
+		pessoa.setEmail("ney@yahoo.com.br");
 		
 		daoGeneric.salvar(pessoa);
 		
@@ -63,5 +65,31 @@ DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
 		
 		System.out.println(pessoa);
 	}
+	
+	@Test
+	public void testeDelete() { // outro metodo 
+		
+		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
 
+		UsuarioPessoa	pessoa = daoGeneric.pesquisar(1L, UsuarioPessoa.class);
+		
+		daoGeneric.deletarPorId(pessoa);
+
+	}
+	
+	@Test
+	public void testeConsultar() { // outro metodo 
+		
+		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
+		
+		List<UsuarioPessoa> list = daoGeneric.listar(UsuarioPessoa.class);
+		
+		for (UsuarioPessoa usuarioPessoa : list) {
+			
+			System.out.println(usuarioPessoa);
+			System.out.println("---------------------------------");
+		}
+		
+	
+	}
 }
