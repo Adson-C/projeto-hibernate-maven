@@ -31,6 +31,7 @@ public class DaoGeneric <E> {
 		
 		Object id = HibernateUtil.getPrimaryKey(entidade);
 		
+		@SuppressWarnings("unchecked")
 		E e = (E) entityManager.find(entidade.getClass(), id);
 		
 		return e;
@@ -61,10 +62,16 @@ public E pesquisar(Long id, Class<E> entidade) {
 		EntityTransaction transaction = entityManager.getTransaction();
 		transaction.begin();
 		
+		@SuppressWarnings("unchecked")
 		List<E> lista = entityManager.createQuery("from " + entidade.getName()).getResultList();
 		
 		transaction.commit();
 		
 		return lista;
 	}
+	
+	public EntityManager getEntityManager() {
+		return entityManager;
+	}
+	
 }

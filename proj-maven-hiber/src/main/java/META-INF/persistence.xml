@@ -7,6 +7,7 @@
 	<persistence-unit name="proj-maven-hiber">
 	
 	<class>model.UsuarioPessoa</class>
+	<class>model.TelefoneUser</class>
 		<properties>
 		<!-- Dados de conexao com outros bancos -->
 			<property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
