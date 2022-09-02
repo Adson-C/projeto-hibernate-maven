@@ -20,6 +20,13 @@ public class UsuarioPessoaMangedBean {
 		this.usuarioPessoa = usuarioPessoa;
 	}
 	
-	
+	public String salvar() {
+		daoGeneric.salvar(usuarioPessoa);
+		return "";
+	}
 
+	public String novo() {
+		usuarioPessoa = new UsuarioPessoa();
+		return "";
+	}
 }

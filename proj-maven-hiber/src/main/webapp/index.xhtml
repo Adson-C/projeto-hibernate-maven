@@ -34,6 +34,9 @@
 	<h:outputLabel>Senha:</h:outputLabel>
 	<h:inputSecret value="#{usuarioPessoaManagedBean.usuarioPessoa.senha}"/>
 	
+	<h:commandButton value="Salvar" action="#{usuarioPessoaManagedBean.salvar}"/>
+	<h:commandButton value="Novo" action="#{usuarioPessoaManagedBean.novo}"/>
+	
 	</h:panelGrid>
 	
 	</h:form>
