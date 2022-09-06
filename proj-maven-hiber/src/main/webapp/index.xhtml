@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 
 <html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:f="http://java.sun.com/jsf/core"	
       xmlns:h="http://java.sun.com/jsf/html">
 
 	<h:head>
@@ -34,37 +35,51 @@
 	<h:outputLabel>Senha:</h:outputLabel>
 	<h:inputSecret value="#{usuarioPessoaManagedBean.usuarioPessoa.senha}"/>
 	</h:panelGrid>
+	<br/>
+	<br/>
 	
-	<h:commandButton value="Salvar" action="#{usuarioPessoaManagedBean.salvar}"/>
-	<h:commandButton value="Novo" action="#{usuarioPessoaManagedBean.novo}"/>
+	<h:commandButton value="Salvar"
+	 action="#{usuarioPessoaManagedBean.salvar}"/>
+	<h:commandButton value="Novo"
+	 action="#{usuarioPessoaManagedBean.novo}"/>
+	 
+	 <br/>
+	 <br/>
 	
-	<h:dataTable value="#{usuarioPessoaManagedBean.list}" var="user">
-	<h:column>
-		<h:outputText value="#{user.id}"></h:outputText>	
-	</h:column>
-	
-	<h:column>
-		<h:outputText value="#{user.name}"></h:outputText>	
-	</h:column>
-	
-	<h:column>
-		<h:outputText value="#{user.sobreNome}"></h:outputText>	
-	</h:column>
-	
-	<h:column>
-		<h:outputText value="#{user.email}"></h:outputText>	
-	</h:column>
-	
-	<h:column>
-		<h:outputText value="#{user.login}"></h:outputText>	
-	</h:column>
-	
-	<h:column>
-		<h:outputText value="#{user.idade}"></h:outputText>	
-	</h:column>
-	
-	</h:dataTable>
-	
+	<h:dataTable value="#{usuarioPessoaManagedBean.list}" var="user" cellpadding="15" border="1">
+		<f:facet name="header">Lista de usuários</f:facet>
+			<h:column>
+				<f:facet name="header">Id</f:facet>
+				<h:outputText value="#{user.id}"></h:outputText>	
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Nome</f:facet>
+				<h:outputText value="#{user.name}"></h:outputText>	
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Sobrenome</f:facet>
+				<h:outputText value="#{user.sobreNome}"></h:outputText>	
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">E-mail</f:facet>
+				<h:outputText value="#{user.email}"></h:outputText>	
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Login</f:facet>
+				<h:outputText value="#{user.login}"></h:outputText>	
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Idade</f:facet>
+				<h:outputText value="#{user.idade}"></h:outputText>	
+			</h:column>
+			
+			</h:dataTable>
+			
 	</h:form>
 	
 	</h:body>
