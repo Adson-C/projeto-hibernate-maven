@@ -1,5 +1,8 @@
 package managedBean;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -12,6 +15,7 @@ public class UsuarioPessoaMangedBean {
 	
 	private UsuarioPessoa usuarioPessoa = new UsuarioPessoa();
 	private DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
+	private List<UsuarioPessoa> list = new ArrayList<UsuarioPessoa>();
 	
 	public UsuarioPessoa getUsuarioPessoa() {
 		return usuarioPessoa;
@@ -29,4 +33,10 @@ public class UsuarioPessoaMangedBean {
 		usuarioPessoa = new UsuarioPessoa();
 		return "";
 	}
+	public List<UsuarioPessoa> getList() {
+		list = daoGeneric.listar(UsuarioPessoa.class);
+		
+		return list;
+	}
+	
 }

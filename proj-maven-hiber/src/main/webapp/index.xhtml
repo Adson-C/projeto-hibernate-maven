@@ -33,11 +33,37 @@
 	
 	<h:outputLabel>Senha:</h:outputLabel>
 	<h:inputSecret value="#{usuarioPessoaManagedBean.usuarioPessoa.senha}"/>
+	</h:panelGrid>
 	
 	<h:commandButton value="Salvar" action="#{usuarioPessoaManagedBean.salvar}"/>
 	<h:commandButton value="Novo" action="#{usuarioPessoaManagedBean.novo}"/>
 	
-	</h:panelGrid>
+	<h:dataTable value="#{usuarioPessoaManagedBean.list}" var="user">
+	<h:column>
+		<h:outputText value="#{user.id}"></h:outputText>	
+	</h:column>
+	
+	<h:column>
+		<h:outputText value="#{user.name}"></h:outputText>	
+	</h:column>
+	
+	<h:column>
+		<h:outputText value="#{user.sobreNome}"></h:outputText>	
+	</h:column>
+	
+	<h:column>
+		<h:outputText value="#{user.email}"></h:outputText>	
+	</h:column>
+	
+	<h:column>
+		<h:outputText value="#{user.login}"></h:outputText>	
+	</h:column>
+	
+	<h:column>
+		<h:outputText value="#{user.idade}"></h:outputText>	
+	</h:column>
+	
+	</h:dataTable>
 	
 	</h:form>
 	

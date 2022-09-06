@@ -7,17 +7,24 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
-@Entity
+
 /*
-@NamedQueries({
-	
-	@NamedQuery(name = "consultarTodosUser", query = "select u from UsuarioPessoa u"),
-	@NamedQuery(name = "UsuarioPessoa.buscarPoName", query = "select u from UsuarioPessoa u where u.name = :name")
-	
-	
-})*/
+ * @NamedQueries({
+ * 
+ * @NamedQuery(name = "consultarTodosUser", query =
+ * "select u from UsuarioPessoa u"),
+ * 
+ * @NamedQuery(name = "UsuarioPessoa.buscarPoName", query =
+ * "select u from UsuarioPessoa u where u.name = :name")
+ * 
+ * 
+ * })
+ */
+@Entity
 public class UsuarioPessoa {
 	
 	@Id
