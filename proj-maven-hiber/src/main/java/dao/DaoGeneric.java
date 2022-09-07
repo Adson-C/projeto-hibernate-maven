@@ -45,7 +45,7 @@ public E pesquisar(Long id, Class<E> entidade) {
 		return e;
 	}
 
-	public void deletarPorId(E entidade) {
+	public void deletarPorId(E entidade) throws Exception {
 		
 		Object id = HibernateUtil.getPrimaryKey(entidade);
 		
@@ -54,7 +54,7 @@ public E pesquisar(Long id, Class<E> entidade) {
 		
 		entityManager.createNativeQuery(
 				"delete from " + entidade.getClass().getSimpleName().toLowerCase() + " where id =" + id).executeUpdate(); // faz delete
-		 transaction.commit(); // grava alterção no banco
+		 transaction.commit(); // grava alterï¿½ï¿½o no banco
 
 	}
 	

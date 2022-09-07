@@ -3,6 +3,7 @@ package managedBean;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -19,6 +20,11 @@ public class UsuarioPessoaMangedBean {
 	private DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
 	private List<UsuarioPessoa> list = new ArrayList<UsuarioPessoa>();
 	
+	@PostConstruct
+	public void init() {
+		list = daoGeneric.listar(UsuarioPessoa.class);
+	}
+	
 	public UsuarioPessoa getUsuarioPessoa() {
 		return usuarioPessoa;
 	}
@@ -28,7 +34,9 @@ public class UsuarioPessoaMangedBean {
 	
 	public String salvar() {
 		daoGeneric.salvar(usuarioPessoa);
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação: ",  "Salvo com sucesso!"));
+		list.add(usuarioPessoa);
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
+				"Informação: ",  "Salvo com sucesso!"));
 		return "";
 	}
 
@@ -37,15 +45,25 @@ public class UsuarioPessoaMangedBean {
 		return "";
 	}
 	public List<UsuarioPessoa> getList() {
-		list = daoGeneric.listar(UsuarioPessoa.class);
-		
 		return list;
 	}
 	public String remover() {
-		daoGeneric.deletarPorId(usuarioPessoa);
-		usuarioPessoa = new UsuarioPessoa();
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação: ",  "Removido com sucesso!"));
 		
+		try {
+			
+		daoGeneric.deletarPorId(usuarioPessoa);
+		list.remove(usuarioPessoa);
+		usuarioPessoa = new UsuarioPessoa();
+		FacesContext.getCurrentInstance().addMessage(null, 
+				new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação: ",  "Removido com sucesso!"));
+		
+		} catch (Exception e) {
+			if(e.getCause() instanceof org.hibernate.exception.ConstraintViolationException) {
+				FacesContext.getCurrentInstance().addMessage(null, 
+						new FacesMessage(FacesMessage.SEVERITY_INFO, 
+								"Informação: ",  "Existem telefones para Usúarios!"));
+			}
+		}
 		return "";
 	}
 	
