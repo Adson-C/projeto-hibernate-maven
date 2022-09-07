@@ -15,41 +15,41 @@
 		<h:form>
 		      <h:messages showDetail="true" showSummary="false"/>
 			
-				<h:panelGrid columns="2">
+				<p:panelGrid columns="2">
 				
 				<h:outputLabel>Id:</h:outputLabel>
-				<h:inputText readonly="true" value="#{usuarioPessoaManagedBean.usuarioPessoa.id}"/>
+				<p:inputText readonly="true" value="#{usuarioPessoaManagedBean.usuarioPessoa.id}"/>
 				
 				<h:outputLabel>Nome:</h:outputLabel>
-				<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.name}" required="true" requiredMessage="Informe o Nome!"/>
+				<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.name}" required="true" requiredMessage="Informe o Nome!"/>
 				
 				<h:outputLabel>SobreNome:</h:outputLabel>
-				<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.sobreNome}" required="true" requiredMessage="Informe o Sobrenome!"/>
+				<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.sobreNome}" required="true" requiredMessage="Informe o Sobrenome!"/>
 				
 				<h:outputLabel>E-mail:</h:outputLabel>
-				<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.email}" required="true" requiredMessage="Informe seu E-mail!"/>
+				<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.email}" required="true" requiredMessage="Informe seu E-mail!"/>
 				
 				<h:outputLabel>Idade:</h:outputLabel>
-				<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.idade}"/>
+				<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.idade}"/>
 				
 				<h:outputLabel>Login:</h:outputLabel>
-				<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.login}"/>
+				<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.login}"/>
 				
 				<h:outputLabel>Senha:</h:outputLabel>
-				<h:inputSecret value="#{usuarioPessoaManagedBean.usuarioPessoa.senha}"/>
-				</h:panelGrid>
+				<p:password value="#{usuarioPessoaManagedBean.usuarioPessoa.senha}"/>
+				</p:panelGrid>
 		<br/>
 	<br/>
 	
-	<h:commandButton value="Salvar"
+	<p:commandButton value="Salvar"
 	 action="#{usuarioPessoaManagedBean.salvar}"/>
-	<h:commandButton value="Novo"
+	<p:commandButton value="Novo"
 	 action="#{usuarioPessoaManagedBean.novo}"/>
 	 
 	 <br/>
 	 <br/>
 	
-	<h:dataTable value="#{usuarioPessoaManagedBean.list}" var="user" cellpadding="15" border="1">
+	<p:dataTable value="#{usuarioPessoaManagedBean.list}" var="user" cellpadding="15" border="1">
 		<f:facet name="header">Lista de usuários</f:facet>
 			<h:column>
 				<f:facet name="header">Id</f:facet>
@@ -99,7 +99,7 @@
 				</h:commandLink>
 			</h:column>
 			
-			</h:dataTable>
+			</p:dataTable>
 			
 	</h:form>
 	

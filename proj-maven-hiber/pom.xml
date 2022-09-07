@@ -4,6 +4,8 @@
 	<groupId>proj-maven-hiber</groupId>
 	<artifactId>proj-maven-hiber</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	
+	<packaging>war</packaging>
 
 	<name>proj-maven-hiber</name>
 	<url>http://maven.apache.org</url>
@@ -73,6 +75,18 @@
 			<artifactId>jsf-impl</artifactId>
 			<version>2.2.0</version>
 			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces</artifactId>
+			<version>6.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.9</version>
 		</dependency>
 
 
