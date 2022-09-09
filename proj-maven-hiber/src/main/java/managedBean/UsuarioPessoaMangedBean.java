@@ -9,7 +9,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import dao.DaoGeneric;
+import dao.Daousuario;
 import model.UsuarioPessoa;
 
 @ManagedBean(name = "usuarioPessoaManagedBean")
@@ -17,8 +17,8 @@ import model.UsuarioPessoa;
 public class UsuarioPessoaMangedBean {
 	
 	private UsuarioPessoa usuarioPessoa = new UsuarioPessoa();
-	private DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
 	private List<UsuarioPessoa> list = new ArrayList<UsuarioPessoa>();
+	private Daousuario<UsuarioPessoa> daoGeneric = new Daousuario<UsuarioPessoa>();
 	
 	@PostConstruct
 	public void init() {
@@ -51,7 +51,7 @@ public class UsuarioPessoaMangedBean {
 		
 		try {
 			
-		daoGeneric.deletarPorId(usuarioPessoa);
+		daoGeneric.removerUsuario(usuarioPessoa);
 		list.remove(usuarioPessoa);
 		usuarioPessoa = new UsuarioPessoa();
 		FacesContext.getCurrentInstance().addMessage(null, 
@@ -62,6 +62,8 @@ public class UsuarioPessoaMangedBean {
 				FacesContext.getCurrentInstance().addMessage(null, 
 						new FacesMessage(FacesMessage.SEVERITY_INFO, 
 								"Informação: ",  "Existem telefones para Usúarios!"));
+			}else {
+				e.printStackTrace();
 			}
 		}
 		return "";
