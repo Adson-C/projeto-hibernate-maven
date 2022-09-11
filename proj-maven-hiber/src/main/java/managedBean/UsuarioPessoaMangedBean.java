@@ -8,6 +8,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.AjaxBehaviorEvent;
 
 import dao.Daousuario;
 import model.UsuarioPessoa;
@@ -23,6 +24,19 @@ public class UsuarioPessoaMangedBean {
 	@PostConstruct
 	public void init() {
 		list = daoGeneric.listar(UsuarioPessoa.class);
+	}
+	
+	public void pequisaCep(AjaxBehaviorEvent event) {
+		
+		try {
+			
+			System.out.println("Cep digitado: " + usuarioPessoa.getCep());
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	public UsuarioPessoa getUsuarioPessoa() {

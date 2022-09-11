@@ -43,7 +43,16 @@
 				<h:selectOneMenu value="#{usuarioPessoaManagedBean.usuarioPessoa.sexo}">
 					<f:selectItem itemValue="MASCULINO"/>
 					<f:selectItem itemValue="FEMININO"/>	
-				</h:selectOneMenu>				
+				</h:selectOneMenu>	
+				
+				<h:outputLabel>Cep:</h:outputLabel>
+				<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.cep}" id="cepuser">
+					<f:ajax event="blur" execute="@this"
+					 listener="#{usuarioPessoaManagedBean.pequisaCep}"/>
+				
+				</h:inputText>
+				
+							
 				<h:outputLabel>Login:</h:outputLabel>
 				<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.login}"/>
 				
