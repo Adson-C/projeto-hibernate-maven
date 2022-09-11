@@ -38,9 +38,10 @@ public class DaoGeneric <E> {
 	}
 	
 public E pesquisar(Long id, Class<E> entidade) {
-		
-		
-		E e = (E) entityManager.find(entidade, id);
+	
+		entityManager.clear();
+		@SuppressWarnings("unchecked")
+		E e = (E) entityManager.createQuery("from " + entidade.getSimpleName() + " where id = " + id).getSingleResult();
 		
 		return e;
 	}

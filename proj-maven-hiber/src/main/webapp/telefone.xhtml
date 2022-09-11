@@ -40,6 +40,41 @@
 	 action="#{telefoneManagedBean.salvar}"/>
 					 
 	</h:form>
+	
+	<h:form id="formTelefones">
+		<h:dataTable value="#{telefoneManagedBean.user.telefoneUsers}" var="fone" cellpadding="15" border="1">
+			<f:facet name="header">Lista de Telefones</f:facet>
+			<h:column style="width:150px;">
+				<f:facet name="header">Id</f:facet>
+				<h:outputText value="#{fone.id}"></h:outputText>	
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Número</f:facet>
+				<h:outputText value="#{fone.numero}"></h:outputText>	
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Tipo</f:facet>
+				<h:outputText value="#{fone.tipo}"></h:outputText>	
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Delete</f:facet>
+				<h:commandLink immediate="true" 
+				action="#{telefoneManagedBean.removeTelefone}" id="botaoremover">
+				<h:graphicImage url="resources/img/excluir.png"/>
+				<f:setPropertyActionListener value="#{fone}" 
+					target="#{telefoneManagedBean.telefone}"/>
+					<f:ajax execute="botaoremover" render="@form :formulario:msg"/>
+				
+				</h:commandLink>
+			</h:column>
+						
+		</h:dataTable>
+		
+	
+	</h:form>
 		
 	</h:body>
 
