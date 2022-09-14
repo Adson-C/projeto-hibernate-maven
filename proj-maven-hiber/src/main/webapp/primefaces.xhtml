@@ -20,9 +20,11 @@
 		
 		</h:form>
 	
-		<h:form>
-		      <p:messages showDetail="true" showSummary="false"/>
-			
+		<h:form id="formulario">
+		      <p:messages autoUpdate="true" showDetail="true" showSummary="false"/>
+		        <br/>
+	            <br/>  
+				
 				<p:panelGrid columns="2">
 				
 				<p:outputLabel>Id:</p:outputLabel>
@@ -40,6 +42,12 @@
 				<p:outputLabel>Idade:</p:outputLabel>
 				<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.idade}"/>
 				
+				<p:outputLabel>Sexo:</p:outputLabel>
+				<p:selectOneMenu value="#{usuarioPessoaManagedBean.usuarioPessoa.sexo}">
+					<f:selectItem itemValue="MASCULINO" itemLabel="Masculino"/>
+					<f:selectItem itemValue="FEMININO" itemLabel="Feminino"/>	
+				</p:selectOneMenu>	
+				
 				<p:outputLabel>Login:</p:outputLabel>
 				<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.login}"/>
 				
@@ -50,13 +58,19 @@
 	<br/>
 	
 	<p:commandButton value="Salvar"
-	 action="#{usuarioPessoaManagedBean.salvar}"/>
-	<p:commandButton value="Novo"
-	 action="#{usuarioPessoaManagedBean.novo}"/>
+	 action="#{usuarioPessoaManagedBean.salvar}" ajax="false"/>
+	 
+	<p:commandButton value="Novo" immediate="true"
+	 action="#{usuarioPessoaManagedBean.novo}">
+	 	<f:ajax execute="@this" render="@form"/>
+	 </p:commandButton>
 	 
 	 <br/>
 	 <br/>
+	 
+	 </h:form>
 	
+	<h:form id="formtable">
 	<p:dataTable value="#{usuarioPessoaManagedBean.list}" var="user" cellpadding="15" border="1">
 		<f:facet name="header">Lista de usuários</f:facet>
 			<p:column>
@@ -89,21 +103,31 @@
 				<h:outputText value="#{user.idade}"></h:outputText>	
 			</p:column>
 			
-			<p:column>
-				<f:facet name="header">Editar</f:facet>
-				<h:commandLink value="Editar">
+			
+			<p:column headerText="Editar">
+				<h:commandLink  immediate="true" id="botoeditar">
+				<p:graphicImage url="resources/img/edit.png"/>
 				<f:setPropertyActionListener value="#{user}" 
 					target="#{usuarioPessoaManagedBean.usuarioPessoa}"/>
-				
+					
+					<f:ajax execute="botoeditar" render=":formulario"/>
 				</h:commandLink>
 			</p:column>
 			
-			<p:column>
-				<f:facet name="header">Delete</f:facet>
-				<h:commandLink value="delete" action="#{usuarioPessoaManagedBean.remover}">
+			<p:column headerText="Delete">
+				<h:commandLink  action="#{usuarioPessoaManagedBean.remover}" id="botaoremover">
+				<p:graphicImage url="resources/img/excluir.png"/>
 				<f:setPropertyActionListener value="#{user}" 
 					target="#{usuarioPessoaManagedBean.usuarioPessoa}"/>
-				
+				<f:ajax execute="botaoremover" render="@form"/>
+				</h:commandLink>
+			</p:column>
+			
+			<p:column headerText="Telefones">
+				<h:commandLink immediate="true" 
+				action="telefoneprimefaces.jsf" id="botaofone">
+				<p:graphicImage url="resources/img/fone.png" width="28" height="28"/>
+				<f:param name="codigouser" value="#{user.id}"/>				
 				</h:commandLink>
 			</p:column>
 			
