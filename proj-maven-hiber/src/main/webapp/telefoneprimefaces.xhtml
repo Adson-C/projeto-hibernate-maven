@@ -11,7 +11,6 @@
 	</h:head>
 	
 	<h:body>
-	<h1>Fone PrimeFaces</h1>
 	
 	<h:form>
 			<p:breadCrumb>
@@ -25,43 +24,44 @@
 		     <h:messages showDetail="true" showSummary="false" id="msg"/>
 		     
 		     <h:panelGrid columns="2">
-		     	<h:outputLabel>Usuario: </h:outputLabel>
+		     
+		     	<p:outputLabel>Usuario: </p:outputLabel>
 		        <h:outputText value="#{telefoneManagedBean.user.name}"/> 
 		        
-		        <h:outputLabel>Numero: </h:outputLabel>
+		        <p:outputLabel>Numero: </p:outputLabel>
 		        <h:inputText value="#{telefoneManagedBean.telefone.numero}"/>
 		        
-		        <h:outputLabel>Tipo: </h:outputLabel>
+		        <p:outputLabel>Tipo: </p:outputLabel>
 		        <h:inputText value="#{telefoneManagedBean.telefone.tipo}"/>
 		        
 		     </h:panelGrid>
 		     <br/>
 	 <br/>
 	 
-	 <h:commandButton value="Salvar"
-	 action="#{telefoneManagedBean.salvar}"/>
+	 <p:commandButton value="Salvar"
+	 action="#{telefoneManagedBean.salvar}" ajax="false"></p:commandButton>
 					 
 	</h:form>
 	
 	<h:form id="formTelefones">
-		<h:dataTable value="#{telefoneManagedBean.user.telefoneUsers}" var="fone" cellpadding="15" border="1">
+		<p:dataTable value="#{telefoneManagedBean.user.telefoneUsers}" var="fone">
 			<f:facet name="header">Lista de Telefones</f:facet>
-			<h:column style="width:150px;">
+			<p:column style="width:150px;">
 				<f:facet name="header">Id</f:facet>
 				<h:outputText value="#{fone.id}"></h:outputText>	
-			</h:column>
+			</p:column>
 			
-			<h:column>
+			<p:column>
 				<f:facet name="header">Número</f:facet>
 				<h:outputText value="#{fone.numero}"></h:outputText>	
-			</h:column>
+			</p:column>
 			
-			<h:column>
+			<p:column>
 				<f:facet name="header">Tipo</f:facet>
 				<h:outputText value="#{fone.tipo}"></h:outputText>	
-			</h:column>
+			</p:column>
 			
-			<h:column>
+			<p:column>
 				<f:facet name="header">Delete</f:facet>
 				<h:commandLink immediate="true" 
 				action="#{telefoneManagedBean.removeTelefone}" id="botaoremover">
@@ -71,9 +71,9 @@
 					<f:ajax execute="botaoremover" render="@form :formulario:msg"/>
 				
 				</h:commandLink>
-			</h:column>
+			</p:column>
 						
-		</h:dataTable>
+		</p:dataTable>
 		
 	
 	</h:form>
