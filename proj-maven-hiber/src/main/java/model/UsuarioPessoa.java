@@ -37,6 +37,8 @@ public class UsuarioPessoa {
 	private String senha;
 	private String sexo;
 	private int idade;
+	private Double salario;
+	
 	@OneToMany(mappedBy = "usuarioPessoa", fetch = FetchType.EAGER)
 	private List<TelefoneUser> telefoneUsers;
 	
@@ -154,6 +156,12 @@ public class UsuarioPessoa {
 	}
 	public void setIdade(int idade) {
 		this.idade = idade;
+	}
+	public Double getSalario() {
+		return salario;
+	}
+	public void setSalario(Double salario) {
+		this.salario = salario;
 	}
 	public String getSexo() {
 		return sexo;

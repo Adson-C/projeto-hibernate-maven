@@ -21,18 +21,18 @@
 		</h:form>	
 		
 	<h:form id="formulario">
-		     <h:messages showDetail="true" showSummary="false" id="msg"/>
+		     <p:messages showDetail="true" showSummary="false" id="msg"/>
 		     
 		     <h:panelGrid columns="2">
 		     
 		     	<p:outputLabel>Usuario: </p:outputLabel>
-		        <h:outputText value="#{telefoneManagedBean.user.name}"/> 
+		        <p:outputLabel value="#{telefoneManagedBean.user.name}"/> 
 		        
 		        <p:outputLabel>Numero: </p:outputLabel>
-		        <h:inputText value="#{telefoneManagedBean.telefone.numero}"/>
+		        <h:inputText value="#{telefoneManagedBean.telefone.numero}" required="true" requiredMessage="Número obrigatório"/>
 		        
 		        <p:outputLabel>Tipo: </p:outputLabel>
-		        <h:inputText value="#{telefoneManagedBean.telefone.tipo}"/>
+		        <h:inputText value="#{telefoneManagedBean.telefone.tipo}" required="true" requiredMessage="Tipo obrigatório"/>
 		        
 		     </h:panelGrid>
 		     <br/>
@@ -45,7 +45,7 @@
 	
 	<h:form id="formTelefones">
 		<p:dataTable value="#{telefoneManagedBean.user.telefoneUsers}" var="fone">
-			<f:facet name="header">Lista de Telefones</f:facet>
+			
 			<p:column style="width:150px;">
 				<f:facet name="header">Id</f:facet>
 				<h:outputText value="#{fone.id}"></h:outputText>	

@@ -15,6 +15,9 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
 
+import org.primefaces.model.chart.BarChartModel;
+import org.primefaces.model.chart.ChartSeries;
+
 import com.google.gson.Gson;
 
 import dao.Daousuario;
@@ -27,10 +30,18 @@ public class UsuarioPessoaMangedBean {
 	private UsuarioPessoa usuarioPessoa = new UsuarioPessoa();
 	private List<UsuarioPessoa> list = new ArrayList<UsuarioPessoa>();
 	private Daousuario<UsuarioPessoa> daoGeneric = new Daousuario<UsuarioPessoa>();
+	private BarChartModel barChartModel = new BarChartModel();
 	
 	@PostConstruct
 	public void init() {
 		list = daoGeneric.listar(UsuarioPessoa.class);
+		
+		for (UsuarioPessoa usuarioPessoa : list) {
+			ChartSeries userSalario = new ChartSeries("Salários dos Usuarios");
+			userSalario.setLabel("Users");
+			userSalario.set(usuarioPessoa.getName(), usuarioPessoa.getSalario());
+			barChartModel.addSeries(userSalario);
+		}
 	}
 	
 	public void pequisaCep(AjaxBehaviorEvent event) {
@@ -112,6 +123,10 @@ public class UsuarioPessoaMangedBean {
 			}
 		}
 		return "";
+	}
+
+	public BarChartModel getBarChartModel() {
+		return barChartModel;
 	}
 	
 }
