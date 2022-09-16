@@ -36,12 +36,13 @@ public class UsuarioPessoaMangedBean {
 	public void init() {
 		list = daoGeneric.listar(UsuarioPessoa.class);
 		
-		for (UsuarioPessoa usuarioPessoa : list) {
-			ChartSeries userSalario = new ChartSeries("Salários dos Usuarios");
-			userSalario.setLabel("Users");
-			userSalario.set(usuarioPessoa.getName(), usuarioPessoa.getSalario());
-			barChartModel.addSeries(userSalario);
+		ChartSeries userSalario = new ChartSeries();// grupo de fucionarios
+		
+		for (UsuarioPessoa usuarioPessoa : list) { //add salarios para o grupo
+			userSalario.set(usuarioPessoa.getName(), usuarioPessoa.getSalario()); // add salarios
 		}
+		barChartModel.addSeries(userSalario); // add o grupo no BarModel
+		barChartModel.setTitle("Gráfico de salários");
 	}
 	
 	public void pequisaCep(AjaxBehaviorEvent event) {
