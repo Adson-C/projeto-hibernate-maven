@@ -127,14 +127,28 @@
 			</p:column>
 			
 			<p:column headerText="Telefones">
-				<h:commandLink immediate="true" 
+				<h:commandLink 
 				action="telefoneprimefaces.jsf" id="botaofone">
 				<p:graphicImage url="resources/img/fone.png" width="28" height="28"/>
 				<f:param name="codigouser" value="#{user.id}"/>				
 				</h:commandLink>
 			</p:column>
 			
+			<p:column headerText="E-mails">
+				<p:commandLink update=":formtable:dialogEmail" oncomplete="PF('dialogEmail').show()">
+					<f:setPropertyActionListener value="#{user}" target="#{usuarioPessoaManagedBean.usuarioPessoa}"></f:setPropertyActionListener>
+					<h:graphicImage url="resources/img/eemail.jpg" width="28" height="28"/>
+					
+				</p:commandLink>
+			
+			</p:column>
+			
 			</p:dataTable>
+			
+			<p:dialog header="E-mails" id="dialogEmail" widgetVar="dialogEmail"
+			 position="center" modal="true" width="490px">
+			
+			</p:dialog>
 			
 	</h:form>
 	
