@@ -146,16 +146,38 @@
 			</p:dataTable>
 			
 			<p:dialog header="E-mails" id="dialogEmail" widgetVar="dialogEmail"
-			 position="center" modal="true" width="490px" resizable="false">
+			 position="500, 250" modal="true" width="490px" resizable="false">
 			 
 				<p:panelGrid>
 				
 					<h:outputLabel value="E-Mail: "/>
 					<p:inputText value="#{usuarioPessoaManagedBean.emailUser.email}" id="emailUseradd"/>
 					<p:commandButton value="Adicinar" 
-					actionListener="#{usuarioPessoaManagedBean.addEmail}" update="emailUseradd"></p:commandButton>
+					actionListener="#{usuarioPessoaManagedBean.addEmail}" update="emailUseradd, dataTableEmail"></p:commandButton>
 					
 				</p:panelGrid> 
+				
+				<p:dataTable value="#{usuarioPessoaManagedBean.usuarioPessoa.emails}" var="email" id="dataTableEmail">
+				
+					<p:column headerText="Id">
+						<h:outputLabel value="#{email.id}"/>
+					</p:column>
+					
+					<p:column headerText="E-Mail">
+						<h:outputText value="#{email.email}"/>
+					</p:column>
+					
+					<p:column headerText="Remover">
+						<h:commandLink id="botaoremoveremail" 
+						actionListener="#{usuarioPessoaManagedBean.removerEmail}">
+					
+						<f:param name="codigoemail" value="#{email.id}"/>
+						<f:ajax execute="botaoremoveremail" render="dataTableEmail"/>
+						<p:graphicImage url="resources/img/excluir.png"/>
+						</h:commandLink>
+					</p:column>
+				
+				</p:dataTable>
 			
 			</p:dialog>
 			
