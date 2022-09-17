@@ -31,13 +31,17 @@
 				<p:inputText readonly="true" value="#{usuarioPessoaManagedBean.usuarioPessoa.id}"/>
 				
 				<p:outputLabel>Nome:</p:outputLabel>
-				<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.name}" required="true" requiredMessage="Informe o Nome!"/>
+				<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.name}" 
+				required="true" requiredMessage="Informe o Nome!" id="idnomePessoa">
+					<p:watermark value="Informe o Nome" for="idnomePessoa"/>
+				
+				</p:inputText>
 				
 				<p:outputLabel>SobreNome:</p:outputLabel>
-				<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.sobreNome}" required="true" requiredMessage="Informe o Sobrenome!"/>
-				
-				<p:outputLabel>E-mail:</p:outputLabel>
-				<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.email}" required="true" requiredMessage="Informe seu E-mail!"/>
+				<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.sobreNome}" 
+				required="true" requiredMessage="Informe o Sobrenome!" id="idsobreNome">
+					<p:watermark value="Informe o Sobrenome" for="idsobreNome"/>
+				</p:inputText>
 				
 				<p:outputLabel>Idade:</p:outputLabel>
 				<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.idade}"/>
@@ -50,40 +54,7 @@
 					<f:selectItem itemValue="MASCULINO" itemLabel="Masculino"/>
 					<f:selectItem itemValue="FEMININO" itemLabel="Feminino"/>	
 				</p:selectOneMenu>	
-				
-				<p:outputLabel>Cep:</p:outputLabel>
-				<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.cep}" id="cepuser">
-					<f:ajax event="blur" execute="@this" 
-					render="logradouro complemento bairro localidade uf undidade ibge gia"
-					 listener="#{usuarioPessoaManagedBean.pequisaCep}"/>
-				
-				</p:inputText>
-				
-				<p:outputLabel>Logradouro:</p:outputLabel>
-				<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.logradouro}" id="logradouro" />
-				
-				<p:outputLabel>Complemento:</p:outputLabel>
-				<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.complemento}" id="complemento" />
-				
-				<p:outputLabel>Bairro:</p:outputLabel>
-				<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.bairro}" id="bairro" />
-				
-				<p:outputLabel>Localidade:</p:outputLabel>
-				<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.localidade}" id="localidade" />
-				
-				<p:outputLabel>Uf:</p:outputLabel>
-				<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.uf}" id="uf" />
-				
-				<p:outputLabel>Unidade:</p:outputLabel>
-				<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.undidade}" id="undidade" />
-				
-				<p:outputLabel>Ibge:</p:outputLabel>
-				<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.ibge}" id="ibge" />
-				
-				<p:outputLabel>Gia:</p:outputLabel>
-				<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.gia}" id="gia" />
-				
-				
+								
 				<p:outputLabel>Login:</p:outputLabel>
 				<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.login}"/>
 				
@@ -124,10 +95,6 @@
 				<h:outputText value="#{user.sobreNome}"></h:outputText>	
 			</p:column>
 			
-			<p:column>
-				<f:facet name="header">E-mail</f:facet>
-				<h:outputText value="#{user.email}"></h:outputText>	
-			</p:column>
 			
 			<p:column>
 				<f:facet name="header">Login</f:facet>

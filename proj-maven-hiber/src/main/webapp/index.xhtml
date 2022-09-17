@@ -36,9 +36,6 @@
 				<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.sobreNome}" pt:placeholder="Informe o sobrenome"
 				 required="true" requiredMessage="Informe o Sobrenome!"/>
 				
-				<h:outputLabel>E-mail:</h:outputLabel>
-				<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.email}" pt:placeholder="Informe um E-mail"
-				 required="true" requiredMessage="Informe seu E-mail!"/>
 				
 				<h:outputLabel>Idade:</h:outputLabel>
 				<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.idade}"/>
@@ -121,10 +118,6 @@
 				<h:outputText value="#{user.sobreNome}"></h:outputText>	
 			</h:column>
 			
-			<h:column>
-				<f:facet name="header">E-mail</f:facet>
-				<h:outputText value="#{user.email}"></h:outputText>	
-			</h:column>
 			
 			<h:column>
 				<f:facet name="header">Login</f:facet>

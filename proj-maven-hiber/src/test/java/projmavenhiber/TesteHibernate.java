@@ -21,7 +21,6 @@ public class TesteHibernate {
 		pessoa.setName("Pablo");
 		pessoa.setSobreNome("Escobar");
 		pessoa.setSenha("123");
-		pessoa.setEmail("plaboecobar@yahoo.com.br");
 		
 		daoGeneric.salvar(pessoa);
 		

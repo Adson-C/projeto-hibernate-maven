@@ -45,42 +45,41 @@ public class UsuarioPessoaMangedBean {
 		barChartModel.setTitle("Gráfico de salários");
 	}
 	
-	public void pequisaCep(AjaxBehaviorEvent event) {
-		
-		try {
-			
-			
-			URL url = new URL("https://viacep.com.br/ws/"+usuarioPessoa.getCep()+"/json/");
-			URLConnection connection = url.openConnection();
-			InputStream is = connection.getInputStream();
-			BufferedReader br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
-			
-			String cep = "";
-			StringBuilder jsonCep = new StringBuilder();
-			
-			while ((cep = br.readLine()) != null) {
-				jsonCep.append(cep);
-			}
-			
-			UsuarioPessoa userCepPessoa = new Gson().fromJson(jsonCep.toString(), UsuarioPessoa.class);
-			
-			usuarioPessoa.setCep(userCepPessoa.getCep());
-			usuarioPessoa.setLogradouro(userCepPessoa.getLogradouro());
-			usuarioPessoa.setComplemento(userCepPessoa.getComplemento());
-			usuarioPessoa.setBairro(userCepPessoa.getBairro());
-			usuarioPessoa.setLocalidade(userCepPessoa.getLocalidade());
-			usuarioPessoa.setUf(userCepPessoa.getUf());
-			usuarioPessoa.setUndidade(userCepPessoa.getUndidade());
-			usuarioPessoa.setIbge(userCepPessoa.getIbge());
-			usuarioPessoa.setGia(userCepPessoa.getGia());
-			
-			
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-	}
+	
+	  public void pequisaCep(AjaxBehaviorEvent event) {
+	  
+	  try {
+	  
+	  
+	  URL url = new
+	  URL("https://viacep.com.br/ws/"+usuarioPessoa.getCep()+"/json/");
+	  URLConnection connection = url.openConnection(); InputStream is =
+	  connection.getInputStream(); BufferedReader br = new BufferedReader(new
+	  InputStreamReader(is, "UTF-8"));
+	  
+	  String cep = ""; StringBuilder jsonCep = new StringBuilder();
+	  
+	  while ((cep = br.readLine()) != null) { jsonCep.append(cep); }
+	  
+	  UsuarioPessoa userCepPessoa = new Gson().fromJson(jsonCep.toString(),
+	  UsuarioPessoa.class);
+	  
+	  usuarioPessoa.setCep(userCepPessoa.getCep());
+	  usuarioPessoa.setLogradouro(userCepPessoa.getLogradouro());
+	  usuarioPessoa.setComplemento(userCepPessoa.getComplemento());
+	  usuarioPessoa.setBairro(userCepPessoa.getBairro());
+	  usuarioPessoa.setLocalidade(userCepPessoa.getLocalidade());
+	  usuarioPessoa.setUf(userCepPessoa.getUf());
+	  usuarioPessoa.setUndidade(userCepPessoa.getUndidade());
+	  usuarioPessoa.setIbge(userCepPessoa.getIbge());
+	  usuarioPessoa.setGia(userCepPessoa.getGia());
+	  
+	  
+	  
+	  } catch (Exception e) { e.printStackTrace(); }
+	  
+	  }
+	 
 	
 	public UsuarioPessoa getUsuarioPessoa() {
 		return usuarioPessoa;
