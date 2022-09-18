@@ -35,11 +35,18 @@ public class UsuarioPessoaMangedBean {
 	private BarChartModel barChartModel = new BarChartModel();
 	private EmailUser emailUser = new EmailUser();
 	private DaoEmail<EmailUser> daoEmail = new DaoEmail<EmailUser>();
+	private String campoPesquisa;
 	
 	@PostConstruct
 	public void init() {
-		barChartModel = new BarChartModel();
 		list = daoGeneric.listar(UsuarioPessoa.class);
+		
+		montarGrafico();
+	}
+
+
+	private void montarGrafico() {
+		barChartModel = new BarChartModel();
 		
 		ChartSeries userSalario = new ChartSeries();// grupo de fucionarios
 		
@@ -181,6 +188,21 @@ public class UsuarioPessoaMangedBean {
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
 				"Informação: ",  " E-Mail excluido com sucesso!"));
 		
+	}
+	
+	public void pesquisar() {
+		list = daoGeneric.pesquisar(campoPesquisa);
+		montarGrafico();
+		
+	}
+	
+	public String getCampoPesquisa() {
+		return campoPesquisa;
+	}
+
+
+	public void setCampoPesquisa(String campoPesquisa) {
+		this.campoPesquisa = campoPesquisa;
 	}
 	
 }

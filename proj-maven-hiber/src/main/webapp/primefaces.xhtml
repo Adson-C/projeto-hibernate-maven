@@ -78,6 +78,21 @@
 	 <br/>
 	 
 	 </h:form>
+	 
+	 <h:form>
+	 	<p:panel header="Pesquisar Usúario">
+	 	
+	 		<h:panelGrid columns="3">
+	 		    <h:outputLabel value="Nome:"/>
+	 			<p:inputText value="#{usuarioPessoaManagedBean.campoPesquisa}" id="idnomePessoa"/>
+	 			<p:commandButton value="Buscar" actionListener="#{usuarioPessoaManagedBean.pesquisar}" update="formtable, :graficoSalario"/>
+	 			<p:watermark value="Nome do Usúario" for="idnomePessoa"/>
+	 		
+	 		</h:panelGrid>
+	 	
+	 	</p:panel>
+	 
+	 </h:form>
 	
 	<h:form id="formtable">
 	<p:dataTable value="#{usuarioPessoaManagedBean.list}" var="user" cellpadding="15" border="1">
