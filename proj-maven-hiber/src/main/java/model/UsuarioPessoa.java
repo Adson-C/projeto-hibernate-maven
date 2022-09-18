@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -39,6 +40,10 @@ public class UsuarioPessoa {
 	private String sexo;
 	private int idade;
 	private Double salario;
+	
+	@Column(columnDefinition = "text")
+	private String imagem;
+	
 	
 	@OneToMany(mappedBy = "usuarioPessoa", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, orphanRemoval = true)
 	private List<TelefoneUser> telefoneUsers = new ArrayList<TelefoneUser>();
@@ -134,6 +139,13 @@ public class UsuarioPessoa {
 	}
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
+	}
+	
+	public String getImagem() {
+		return imagem;
+	}
+	public void setImagem(String imagem) {
+		this.imagem = imagem;
 	}
 	
 	@Override

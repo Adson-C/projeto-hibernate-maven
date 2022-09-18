@@ -28,7 +28,7 @@
 				<h:panelGrid columns="4">
 				
 				<p:outputLabel>Id:</p:outputLabel>
-				<p:inputText readonly="true" value="#{usuarioPessoaManagedBean.usuarioPessoa.id}" style="width:130"/>
+				<p:inputText readonly="true" value="#{usuarioPessoaManagedBean.usuarioPessoa.id}"/>
 				
 				<p:outputLabel>Nome:</p:outputLabel>
 				<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.name}" 
@@ -61,6 +61,13 @@
 				
 				<p:outputLabel>Senha:</p:outputLabel>
 				<p:password value="#{usuarioPessoaManagedBean.usuarioPessoa.senha}"/>
+				
+				<p:outputLabel>Foto:</p:outputLabel>
+				<p:fileUpload mode="advanced" label="Adiconar" auto="true" update="imagem"
+				fileUploadListener="#{usuarioPessoaManagedBean.upload}"/>
+				
+				<h:outputLabel>Imagem:</h:outputLabel>
+				<h:graphicImage id="imagem" value="#{usuarioPessoaManagedBean.usuarioPessoa.imagem}" width="120" height="100"/>
 				
 				</h:panelGrid>
 		<br/>
