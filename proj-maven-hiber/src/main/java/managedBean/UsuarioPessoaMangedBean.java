@@ -38,6 +38,7 @@ public class UsuarioPessoaMangedBean {
 	
 	@PostConstruct
 	public void init() {
+		barChartModel = new BarChartModel();
 		list = daoGeneric.listar(UsuarioPessoa.class);
 		
 		ChartSeries userSalario = new ChartSeries();// grupo de fucionarios
@@ -93,8 +94,12 @@ public class UsuarioPessoaMangedBean {
 	}
 	
 	public String salvar() {
+		list.add(usuarioPessoa);
 		daoGeneric.salvar(usuarioPessoa);
 		list.add(usuarioPessoa);
+		usuarioPessoa = new UsuarioPessoa();
+		
+		init();
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
 				"Informação: ",  " Salvo com sucesso!"));
 		return "";
@@ -114,6 +119,8 @@ public class UsuarioPessoaMangedBean {
 		daoGeneric.removerUsuario(usuarioPessoa);
 		list.remove(usuarioPessoa);
 		usuarioPessoa = new UsuarioPessoa();
+		
+		init();
 		FacesContext.getCurrentInstance().addMessage(null, 
 				new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação: ",  " Removido com sucesso!"));
 		
