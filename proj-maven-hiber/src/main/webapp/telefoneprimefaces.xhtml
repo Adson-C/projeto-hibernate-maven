@@ -21,7 +21,7 @@
 		</h:form>	
 		
 	<h:form id="formulario">
-		     <p:messages showDetail="true" showSummary="false" id="msg"/>
+		     <p:growl showDetail="true" showSummary="false" id="msg"/>
 		     
 		     <h:panelGrid columns="2">
 		     
@@ -29,10 +29,18 @@
 		        <p:outputLabel value="#{telefoneManagedBean.user.name}"/> 
 		        
 		        <p:outputLabel>Numero: </p:outputLabel>
-		        <h:inputText value="#{telefoneManagedBean.telefone.numero}" required="true" requiredMessage="Número obrigatório"/>
+		        <p:inputMask value="#{telefoneManagedBean.telefone.numero}"
+		        mask="(99) 9 9999-9999"
+		         required="true" requiredMessage="Número obrigatório"/>
 		        
 		        <p:outputLabel>Tipo: </p:outputLabel>
-		        <h:inputText value="#{telefoneManagedBean.telefone.tipo}" required="true" requiredMessage="Tipo obrigatório"/>
+		        <p:selectOneMenu value="#{telefoneManagedBean.telefone.tipo}" style="width:190"
+		        required="true" requiredMessage="Tipo obrigatório">
+		        <f:selectItem itemValue="CELULAR" itemLabel="Celular"/>
+		        <f:selectItem itemValue="CORPORATIVO" itemLabel="Corporativo"/>
+				<f:selectItem itemValue="RESIDÊNCIAL" itemLabel="Residêncial"/>
+							        
+		        </p:selectOneMenu>
 		        
 		     </h:panelGrid>
 		     <br/>
@@ -46,23 +54,20 @@
 	<h:form id="formTelefones">
 		<p:dataTable value="#{telefoneManagedBean.user.telefoneUsers}" var="fone">
 			
-			<p:column style="width:150px;">
-				<f:facet name="header">Id</f:facet>
+			<p:column headerText="Id" style="width:20;">
 				<h:outputText value="#{fone.id}"></h:outputText>	
 			</p:column>
 			
-			<p:column>
-				<f:facet name="header">Número</f:facet>
+			<p:column headerText="Número" width="190">
 				<h:outputText value="#{fone.numero}"></h:outputText>	
 			</p:column>
 			
-			<p:column>
-				<f:facet name="header">Tipo</f:facet>
+			<p:column headerText="Tipo" width="190">
 				<h:outputText value="#{fone.tipo}"></h:outputText>	
 			</p:column>
 			
-			<p:column>
-				<f:facet name="header">Delete</f:facet>
+			<p:column headerText="Delete" width="80">
+				<center>
 				<h:commandLink immediate="true" 
 				action="#{telefoneManagedBean.removeTelefone}" id="botaoremover">
 				<h:graphicImage url="resources/img/excluir.png"/>
@@ -71,6 +76,7 @@
 					<f:ajax execute="botaoremover" render="@form :formulario:msg"/>
 				
 				</h:commandLink>
+				</center>
 			</p:column>
 						
 		</p:dataTable>
