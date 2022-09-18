@@ -18,6 +18,7 @@ public class Daousuario<E> extends DaoGeneric<UsuarioPessoa> {
 		
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<UsuarioPessoa> pesquisar(String campoPesquisa) {
 		Query query = super.getEntityManager().createQuery("from UsuarioPessoa where name like '%"+ campoPesquisa +"%'");
 		

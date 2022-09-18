@@ -112,6 +112,15 @@
 				<h:outputText value="#{user.name}"></h:outputText>	
 			</p:column>
 			
+			<p:column headerText="Download Imagem">
+			<center>
+			 <h:commandLink immediate="true"
+			  actionListener="#{usuarioPessoaManagedBean.downlaod}">
+			  <f:param name="fileDownloadId" value="#{user.id}"/>
+			  <p:graphicImage url="resources/img/down.jpg" width="28" height="28"/>
+			 </h:commandLink>
+			 </center>
+			</p:column>
 			
 			<p:column headerText="Editar">
 				<center>
