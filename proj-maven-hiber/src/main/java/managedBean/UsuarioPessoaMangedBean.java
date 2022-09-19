@@ -28,6 +28,7 @@ import com.google.gson.Gson;
 
 import dao.DaoEmail;
 import dao.Daousuario;
+import datatablelazy.LazyDataTableModelUserPessoa;
 import model.EmailUser;
 import model.UsuarioPessoa;
 
@@ -36,7 +37,7 @@ import model.UsuarioPessoa;
 public class UsuarioPessoaMangedBean {
 	
 	private UsuarioPessoa usuarioPessoa = new UsuarioPessoa();
-	private List<UsuarioPessoa> list = new ArrayList<UsuarioPessoa>();
+	private LazyDataTableModelUserPessoa<UsuarioPessoa> list = new LazyDataTableModelUserPessoa<UsuarioPessoa>();
 	private Daousuario<UsuarioPessoa> daoGeneric = new Daousuario<UsuarioPessoa>();
 	private BarChartModel barChartModel = new BarChartModel();
 	private EmailUser emailUser = new EmailUser();
@@ -45,7 +46,7 @@ public class UsuarioPessoaMangedBean {
 	
 	@PostConstruct
 	public void init() {
-		list = daoGeneric.listar(UsuarioPessoa.class);
+		list.load(0, 5, null, null, null);
 		
 		montarGrafico();
 	}
@@ -56,7 +57,7 @@ public class UsuarioPessoaMangedBean {
 		
 		ChartSeries userSalario = new ChartSeries();// grupo de fucionarios
 		
-		for (UsuarioPessoa usuarioPessoa : list) { //add salarios para o grupo
+		for (UsuarioPessoa usuarioPessoa : list.list) { //add salarios para o grupo
 			userSalario.set(usuarioPessoa.getName(), usuarioPessoa.getSalario()); // add salarios
 		}
 		barChartModel.addSeries(userSalario); // add o grupo no BarModel
@@ -107,9 +108,8 @@ public class UsuarioPessoaMangedBean {
 	}
 	
 	public String salvar() {
-		list.add(usuarioPessoa);
 		daoGeneric.salvar(usuarioPessoa);
-		list.add(usuarioPessoa);
+		list.list.add(usuarioPessoa);
 		usuarioPessoa = new UsuarioPessoa();
 		
 		init();
@@ -122,7 +122,8 @@ public class UsuarioPessoaMangedBean {
 		usuarioPessoa = new UsuarioPessoa();
 		return "";
 	}
-	public List<UsuarioPessoa> getList() {
+	public LazyDataTableModelUserPessoa<UsuarioPessoa> getList() {
+		montarGrafico();
 		return list;
 	}
 	public String remover() {
@@ -130,7 +131,7 @@ public class UsuarioPessoaMangedBean {
 		try {
 			
 		daoGeneric.removerUsuario(usuarioPessoa);
-		list.remove(usuarioPessoa);
+		list.list.remove(usuarioPessoa);
 		usuarioPessoa = new UsuarioPessoa();
 		
 		init();
@@ -197,7 +198,7 @@ public class UsuarioPessoaMangedBean {
 	}
 	
 	public void pesquisar() {
-		list = daoGeneric.pesquisar(campoPesquisa);
+		list.pesquisar(campoPesquisa);
 		montarGrafico();
 		
 	}
